@@ -62,9 +62,9 @@ services:
       - MICROCKS_USER=admin
       - MICROCKS_PASS=admin
 
-  catalog:
+  catalog-data:
     image: mongo:8.0.6
-    container_name: catalog
+    container_name: catalog-data
     ports:
       - "27017:27017"
     volumes:
@@ -72,6 +72,17 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
+    restart: unless-stopped
+
+  catalog-vector:
+    image: qdrant/qdrant:dev
+    container_name: catalog-vector
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant-data:/data/vector
+    restart: unless-stopped
 
   catalog-gui:
     image: mongo-express:1.0.2-20-alpine3.19
@@ -79,17 +90,17 @@ services:
     ports:
       - "27018:8081"
     environment:
-      - ME_CONFIG_MONGODB_URL=mongodb://admin:admin@catalog:27017/
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:admin@catalog-data:27017/
       - ME_CONFIG_BASICAUTH_ENABLED=true
       - ME_CONFIG_BASICAUTH_USERNAME=admin
       - ME_CONFIG_BASICAUTH_PASSWORD=admin
     depends_on:
-      - catalog
+      - catalog-data
     restart: unless-stopped
 
   catalog-gateway:
     build:
-      context: ./mongo-gateway
+      context: ./db-gateway
       dockerfile: Dockerfile
     container_name: catalog-gateway
     ports:
@@ -97,11 +108,15 @@ services:
     environment:
       - MONGO_USER=admin
       - MONGO_PASS=admin
-      - MONGO_HOST=catalog
+      - MONGO_HOST=catalog-data
       - MONGO_PORT=27017
       - MONGO_DB=microcks
+      - QDRANT_HOST=catalog-vector
+      - QDRANT_PORT=6333
+      - QDRANT_COLLECTION=services
     depends_on:
-      - catalog
+      - catalog-data
+      - catalog-vector
 
   control-unit:
     build:
@@ -176,5 +191,6 @@ services:
 
 volumes:
   mongo-data:
+  qdrant-data:
   mock-volume:
   redis-data:

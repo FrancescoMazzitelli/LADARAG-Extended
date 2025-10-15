@@ -276,10 +276,10 @@ class Controller:
         discovered_endpoints = []
 
         services = registry.services()
+
         register_key = "POST /register"
         print("DISCOVERED SERVICES:")
 
-        requests.post(f"{catalog_url}/index/create")
         input = {
             "query": query
         }
@@ -294,7 +294,7 @@ class Controller:
                 "error": "No services matched the query"
             }
         
-        registry_service_ids = set(s["_id"] for s in services)
+        registry_service_ids = set(s["id"] for s in services)
         filtered_service_list = [s for s in service_list if s["_id"] in registry_service_ids]
         orphaned_services = [s for s in service_list if s["_id"] not in registry_service_ids]
         if orphaned_services:

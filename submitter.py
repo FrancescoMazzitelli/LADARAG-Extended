@@ -33,12 +33,15 @@ class ErrorLogger:
 
 
 
-# Redirect stdout and stderr
 logger = Logger("test.txt")
 sys.stdout = logger
 sys.stderr = ErrorLogger(logger)
 
 # =================== SCRIPT START =================== #
+try:
+    http_response = requests.post("http://localhost:7500/api/importer/import")
+except Exception as e:
+    print(f"Error importing external servces: {e}")
 
 # Load questions
 df = pd.read_csv("smart-city-requests/requests_roles.csv")

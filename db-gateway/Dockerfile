@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY mongo-gateway.py app.py
+COPY db-gateway.py app.py
 
 EXPOSE 5000
 
