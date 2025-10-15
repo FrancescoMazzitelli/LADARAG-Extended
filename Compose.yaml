@@ -37,6 +37,8 @@ services:
     depends_on:
       mock-server:
         condition: service_healthy
+      catalog-gateway:
+        condition: service_healthy
     volumes:
       - ./MOCKS-smart-city/apis:/apis
       - ./MOCKS-smart-city/scripts:/scripts
@@ -114,6 +116,11 @@ services:
       - QDRANT_HOST=catalog-vector
       - QDRANT_PORT=6333
       - QDRANT_COLLECTION=services
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 40
     depends_on:
       - catalog-data
       - catalog-vector

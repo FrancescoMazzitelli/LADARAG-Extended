@@ -5,10 +5,25 @@ from qdrant_client.models import VectorParams, Distance, PointStruct
 from bson import ObjectId
 from bson.json_util import dumps
 from cheroot.wsgi import Server as WSGIServer
+import multiprocessing
 import uuid
 import os
+import sys
+import logging
 
 from sentence_transformers import SentenceTransformer
+
+log_file_path = "test.txt"
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler(log_file_path, mode='w', encoding="utf-8"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
+logger = logging.getLogger("app")
 
 app = Flask(__name__)
 
@@ -34,14 +49,31 @@ collection = db["services"]
 
 embedding_model = SentenceTransformer(model_name_or_path='intfloat/multilingual-e5-large', device='cpu', trust_remote_code=True)
 
+is_server_ready = False
+
 def clean_doc(doc):
     doc["_id"] = str(doc["_id"])
     return doc
 
 def embed(input):
-        embedding = embedding_model.encode(str(input), convert_to_tensor=True, normalize_embeddings=True)
+        embedding = embedding_model.encode(f"query: {input}", convert_to_tensor=False, normalize_embeddings=True)
         return embedding.tolist()
 
+# ------------------------------------------------------------------------------| parallel
+def init_model():
+    global model
+    model = SentenceTransformer('intfloat/multilingual-e5-large', device='cpu')
+
+def embed_item(args):
+    doc_id, key, text = args
+    vector = model.encode(f"query: {text}", normalize_embeddings=True)
+    vector_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, text))
+    return PointStruct(
+        id=vector_id,
+        vector=vector.tolist(),
+        payload={"mongo_id": doc_id, "http_operation": key}
+    )
+# ------------------------------------------------------------------------------| parallel
 def create_vector_collection():
     qdrant_client.create_collection(
         collection_name=QDRANT_COLLECTION,
@@ -49,9 +81,15 @@ def create_vector_collection():
     )
     return jsonify({"status": "Collection created"}), 200
 
-@app.route("/")
+@app.route("/health")
 def index():
-    return jsonify({"status": "ok", "message": "Mongo Server is running"}), 200
+    if is_server_ready is True:
+        return jsonify({"status": "ok", "message": "Gateway Server is ready", "model_loaded": True}), 200
+    else:
+        logger.error(f"Model not yet loaded or broken")
+        return jsonify({"status": "error", "message": "Model not yet loaded or broken", "model_loaded": False}), 500
+        
+
 
 @app.route("/index/search", methods=["POST"])
 def vector_search():
@@ -76,6 +114,36 @@ def vector_search():
     return jsonify({"results": services}), 200
 
 
+@app.route("/service/old", methods=["POST"])
+def create_or_update_service_old():
+    data = request.get_json()
+    if not data or "id" not in data:
+        return jsonify({"error": "Missing 'id' field"}), 400
+
+    doc_id = data["id"]
+    data["_id"] = doc_id
+    data.pop("id", None)
+
+    capabilities = data.get("capabilities")
+    for k, v in capabilities.items():
+        embedding = embed(v)
+        print(f"EMBEDDING DIM: {len(embedding)}")
+        vector_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, v))
+        qdrant_client.upsert(
+            collection_name=QDRANT_COLLECTION,
+            points=[
+                PointStruct(
+                    id=vector_id,
+                    vector=embedding,
+                    payload={"mongo_id": doc_id, "http_operation": k}
+                )
+            ]
+        )
+
+    collection.replace_one({"_id": doc_id}, data, upsert=True)
+    return jsonify({"status": "ok", "id": doc_id}), 200
+
+# ------------------------------------------------------------------------------| parallel
 @app.route("/service", methods=["POST"])
 def create_or_update_service():
     data = request.get_json()
@@ -85,27 +153,25 @@ def create_or_update_service():
     doc_id = data["id"]
     data["_id"] = doc_id
     data.pop("id", None)
+    
+    capabilities = data.get("capabilities")
+    input_data = [(doc_id, k, v) for k, v in capabilities.items()]
 
-    description = data.get("description", "")
-    capabilities = " ".join(data.get("capabilities", [])) if isinstance(data.get("capabilities"), list) else str(data.get("capabilities", ""))
-    text_to_embed = f"{description} {capabilities}".strip()
+    try:
+        with multiprocessing.Pool(initializer=init_model) as pool:
+            points = pool.map(embed_item, input_data)
+    except Exception as e:
+        logger.exception("Embedding failed")
+        return jsonify({"error": "Embedding failed", "details": str(e)}), 500
 
-    embedding = embed(text_to_embed)
-    vector_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, doc_id))
     qdrant_client.upsert(
         collection_name=QDRANT_COLLECTION,
-        points=[
-            PointStruct(
-                id=vector_id,
-                vector=embedding,
-                payload={"mongo_id": doc_id}
-            )
-        ]
+        points=points
     )
 
     collection.replace_one({"_id": doc_id}, data, upsert=True)
     return jsonify({"status": "ok", "id": doc_id}), 200
-
+# ------------------------------------------------------------------------------| parallel
 
 @app.route("/services", methods=["GET"])
 def list_services():
@@ -131,6 +197,7 @@ if __name__ == "__main__":
         result = create_vector_collection()
         print(result)
     server = WSGIServer(('0.0.0.0', 5000), app)
+    is_server_ready = True
     try:
         print("🚀 Starting Flask app with Cheroot on http://0.0.0.0:5000")
         server.start()
