@@ -47,9 +47,18 @@ qdrant_client = QdrantClient(QDRANT_URI)
 db = mongo_client[MONGO_DB]
 collection = db["services"]
 
-embedding_model = SentenceTransformer(model_name_or_path='intfloat/multilingual-e5-large', device='cpu', trust_remote_code=True)
-
 is_server_ready = False
+embedding_model = None
+
+def load_model():
+    global embedding_model
+    logger.info("Loading model...")
+    embedding_model = SentenceTransformer(
+        model_name_or_path='intfloat/multilingual-e5-large',
+        device='cpu',
+        trust_remote_code=True
+    )
+    logger.info("Model loaded.")
 
 def clean_doc(doc):
     doc["_id"] = str(doc["_id"])
@@ -193,14 +202,23 @@ def delete_service(service_id):
     return jsonify({"status": "deleted", "id": service_id}), 200
 
 if __name__ == "__main__":
-    with app.app_context():
-        result = create_vector_collection()
-        print(result)
+    try:
+        with app.app_context():
+            logger.info("🛠️ Creating Qdrant collection...")
+            create_vector_collection()
+            logger.info("📦 Loading embedding model...")
+            load_model()
+            is_server_ready = True
+            logger.info("✅ Server is ready.")
+    except Exception as e:
+        logger.exception("❌ Failed to initialize application")
+        sys.exit(1)
+
     server = WSGIServer(('0.0.0.0', 5000), app)
-    is_server_ready = True
     try:
         print("🚀 Starting Flask app with Cheroot on http://0.0.0.0:5000")
         server.start()
     except KeyboardInterrupt:
         print("🛑 Shutting down server...")
         server.stop()
+
