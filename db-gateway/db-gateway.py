@@ -10,6 +10,7 @@ import uuid
 import os
 import sys
 import logging
+import bson
 
 from sentence_transformers import SentenceTransformer
 
@@ -54,7 +55,7 @@ def load_model():
     global embedding_model
     logger.info("Loading model...")
     embedding_model = SentenceTransformer(
-        model_name_or_path='intfloat/multilingual-e5-large',
+        model_name_or_path='Qwen/Qwen3-Embedding-0.6B',
         device='cpu',
         trust_remote_code=True
     )
@@ -71,7 +72,7 @@ def embed(input):
 # ------------------------------------------------------------------------------| parallel
 def init_model():
     global model
-    model = SentenceTransformer('intfloat/multilingual-e5-large', device='cpu')
+    model = SentenceTransformer('Qwen/Qwen3-Embedding-0.6B', device='cpu')
 
 def embed_item(args):
     doc_id, key, text = args
@@ -112,18 +113,43 @@ def vector_search():
     results = qdrant_client.search(
         collection_name=QDRANT_COLLECTION,
         query_vector=query_embedding,
-        limit=5
+        limit=20
     )
 
     services = []
     for result in results:
         doc_id = result.payload["mongo_id"]
-        service = collection.find_one({"_id": doc_id})
-        services.append(service)
+        http_operation = result.payload["http_operation"]
+
+        retrieved = collection.find_one({"_id": doc_id})
+        retrieved = bson.json_util.loads(dumps(retrieved))
+        try:
+            name = retrieved.get("name")
+            description = retrieved.get("description")
+            capabilities = retrieved.get("capabilities")
+            capability = capabilities.get(http_operation)
+            endpoints = retrieved.get("endpoints")
+            endpoint = endpoints.get(http_operation)
+
+            service = {
+                "_id": doc_id,
+                "name": name,
+                "description": description,
+                "capabilities": {
+                    http_operation: capability
+                },
+                "endpoints": {
+                    http_operation: endpoint
+                }
+            }
+
+            services.append(service)
+        except Exception as e:
+            logger.error(f"Error processing doc_id: {doc_id}, operation: {http_operation} - {str(e)}")
     return jsonify({"results": services}), 200
 
 
-@app.route("/service/old", methods=["POST"])
+@app.route("/service", methods=["POST"])
 def create_or_update_service_old():
     data = request.get_json()
     if not data or "id" not in data:
@@ -134,17 +160,20 @@ def create_or_update_service_old():
     data.pop("id", None)
 
     capabilities = data.get("capabilities")
-    for k, v in capabilities.items():
-        embedding = embed(v)
+    for http_op, capability in capabilities.items():
+        embedding = embed(capability)
         print(f"EMBEDDING DIM: {len(embedding)}")
-        vector_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, v))
+        vector_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, capability))
         qdrant_client.upsert(
             collection_name=QDRANT_COLLECTION,
             points=[
                 PointStruct(
                     id=vector_id,
                     vector=embedding,
-                    payload={"mongo_id": doc_id, "http_operation": k}
+                    payload={
+                                "mongo_id": doc_id, 
+                                "http_operation": http_op
+                            }
                 )
             ]
         )
@@ -153,7 +182,7 @@ def create_or_update_service_old():
     return jsonify({"status": "ok", "id": doc_id}), 200
 
 # ------------------------------------------------------------------------------| parallel
-@app.route("/service", methods=["POST"])
+@app.route("/service/old", methods=["POST"])
 def create_or_update_service():
     data = request.get_json()
     if not data or "id" not in data:
