@@ -11,8 +11,9 @@ import os
 import sys
 import logging
 import bson
+import json
 
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, CrossEncoder
 
 log_file_path = "test.txt"
 logging.basicConfig(
@@ -37,7 +38,7 @@ MONGO_URI = f"mongodb://{MONGO_USER}:{MONGO_PASS}@{MONGO_HOST}:{MONGO_PORT}/"
 
 
 QDRANT_HOST = os.environ.get("QDRANT_HOST", "catalog-vector")
-QDRANT_PORT = os.environ.get("QDRANT_PASS", "6333")
+QDRANT_PORT = os.environ.get("QDRANT_PORT", "6333")
 QDRANT_COLLECTION = os.environ.get("QDRANT_COLLECTION", "services")
 QDRANT_URI = f"http://{QDRANT_HOST}:{QDRANT_PORT}"
 
@@ -50,16 +51,27 @@ collection = db["services"]
 
 is_server_ready = False
 embedding_model = None
+reranker_model = None
+tokenizer = None
 
 def load_model():
     global embedding_model
-    logger.info("Loading model...")
+    global reranker_model
+    global tokenizer
+    logger.info("Loading models...")
     embedding_model = SentenceTransformer(
         model_name_or_path='Qwen/Qwen3-Embedding-0.6B',
         device='cpu',
         trust_remote_code=True
     )
-    logger.info("Model loaded.")
+    tokenizer = embedding_model.tokenizer
+    logger.info("Embedding model loaded.")
+    reranker_model = CrossEncoder(
+        model_name_or_path='cross-encoder/ms-marco-MiniLM-L-6-v2',
+        device='cpu',
+        trust_remote_code=True
+    )
+    logger.info("Reranker model loaded.")
 
 def clean_doc(doc):
     doc["_id"] = str(doc["_id"])
@@ -68,6 +80,10 @@ def clean_doc(doc):
 def embed(input):
         embedding = embedding_model.encode(f"query: {input}", convert_to_tensor=False, normalize_embeddings=True)
         return embedding.tolist()
+
+def count_tokens(text):
+    tokens = tokenizer.encode(text, add_special_tokens=True)
+    return len(tokens)
 
 # ------------------------------------------------------------------------------| parallel
 def init_model():
@@ -85,11 +101,16 @@ def embed_item(args):
     )
 # ------------------------------------------------------------------------------| parallel
 def create_vector_collection():
-    qdrant_client.create_collection(
-        collection_name=QDRANT_COLLECTION,
-        vectors_config=VectorParams(size=1024, distance=Distance.COSINE)
-    )
-    return jsonify({"status": "Collection created"}), 200
+    collection_name = QDRANT_COLLECTION
+    existing_collections = qdrant_client.get_collections().collections
+    if collection_name not in [col.name for col in existing_collections]:
+        qdrant_client.create_collection(
+            collection_name=collection_name,
+            vectors_config=VectorParams(size=1024, distance=Distance.COSINE)
+        )
+        return jsonify({"status": f"Collection '{collection_name}' created"}), 200
+    else:
+        return jsonify({"status": f"Collection '{collection_name}' already exists"}), 200
 
 @app.route("/health")
 def index():
@@ -117,6 +138,7 @@ def vector_search():
     )
 
     services = []
+    rerank_texts = []
     for result in results:
         doc_id = result.payload["mongo_id"]
         http_operation = result.payload["http_operation"]
@@ -143,10 +165,33 @@ def vector_search():
                 }
             }
 
+            rerank_texts.append(capability)
+
             services.append(service)
         except Exception as e:
             logger.error(f"Error processing doc_id: {doc_id}, operation: {http_operation} - {str(e)}")
-    return jsonify({"results": services}), 200
+    
+    rerank_inputs = [(query_text, cap_text) for cap_text in rerank_texts]
+    scores = reranker_model.predict(rerank_inputs)
+
+    reranked = sorted(zip(services, scores), key=lambda x: x[1], reverse=True)
+    ordered_services = [doc for doc, _ in reranked]
+
+    max_tokens = 7600
+    current_tokens = 0
+    top_results = []
+    
+    for s in ordered_services:
+        serialized = json.dumps(s)
+        n_tokens = count_tokens(serialized)
+
+        if current_tokens + n_tokens <= max_tokens:
+            top_results.append(s)
+            current_tokens += n_tokens
+        else:
+            break
+            
+    return jsonify({"results": top_results}), 200
 
 
 @app.route("/service", methods=["POST"])

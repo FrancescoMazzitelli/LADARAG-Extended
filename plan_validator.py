@@ -2,6 +2,7 @@ import json
 import csv
 import re
 from urllib.parse import urlparse
+import unicodedata
 
 def extract_method_and_paths(oracle_string):
     """Extract method and path from a multiline Oracle string using space as separator."""
@@ -29,8 +30,16 @@ def extract_method_and_path_from_task(task):
     path = parsed.path.rstrip('/')
     return method, path
 
+#def normalize_question(q):
+#    return q.strip().lower()
+
 def normalize_question(q):
-    return q.strip().lower()
+    q = q.strip().lower()
+    q = unicodedata.normalize("NFKD", q)
+    q = re.sub(r"[‘’´`]", "'", q)
+    q = re.sub(r"[“”]", '"', q)
+    q = re.sub(r"\s+", " ", q)
+    return q
 
 def load_json_questions(json_path):
     with open(json_path, 'r', encoding='utf-8') as f:
@@ -158,10 +167,11 @@ def write_summary_output(results, filename):
         f.write(f"- Endpoint match rate: {matched_endpoints / total_endpoints * 100:.2f}%\n")
 
 # === CONFIGURATION ===
-json_file = "smart-city-results/test-no-roles/execution_plans.json"
+BASE_PATH = "smart-city-results/test-with-reranker-no-roles"
+json_file = f"{BASE_PATH}/execution_plans.json"
 csv_file = "smart-city-requests/requests_no_roles.csv"
-detailed_output = "smart-city-results/request_oracle_details.txt"
-summary_output = "smart-city-results/request_oracle_summary.txt"
+detailed_output = f"{BASE_PATH}/request_oracle_details.txt"
+summary_output = f"{BASE_PATH}/request_oracle_summary.txt"
 
 # === EXECUTION ===
 json_data = load_json_questions(json_file)

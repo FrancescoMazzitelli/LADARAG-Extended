@@ -44,7 +44,7 @@ except Exception as e:
     print(f"Error importing external servces: {e}")
 
 # Load questions
-df = pd.read_csv("smart-city-requests/requests_roles.csv")
+df = pd.read_csv("smart-city-requests/requests_no_roles.csv")
 questions = df["Questions"].tolist()
 
 # Initialize counters
