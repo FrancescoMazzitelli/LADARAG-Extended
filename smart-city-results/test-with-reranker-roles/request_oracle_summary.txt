@@ -13,3 +13,19 @@ Percentages:
 - Partial: 8.08%
 - Incorrect: 14.14%
 - Endpoint match rate: 90.91%
+
+Global Metrics:
+Total TP: 130
+Total FP: 13
+Total FN: 32
+
+Micro Precision: 0.909
+Micro Recall:    0.802
+Micro F1:        0.852
+
+Macro Precision: 0.825
+Macro Recall:    0.825
+Macro F1:        0.825
+
+Global Accuracy: 0.743
+Global Jaccard:  0.743

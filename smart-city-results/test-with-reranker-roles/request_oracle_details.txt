@@ -3,11 +3,34 @@ Q: I am a trash man and I want to retrieve information about all trash bins in t
 Mismatches:
   - Task:   GET /v2/registry/default/garbage-collection
     Oracle: None
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 1.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 1, FN: 1
 Status: INCORRECT
 
 --- Question #2 ---
 Q: I am a trash man and I want to register a new trash bin in the system with id: 3, location: 'City Square', fillLevel: 10, lastEmptied: '2025-09-25T06:30:00Z', binType: 'organic', status: 'normal'
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 1
+TP: 0, FP: 0, FN: 1
 Status: INCORRECT
 
 --- Question #3 ---
@@ -15,6 +38,18 @@ Q: I am a trash man and I want to delete the trash bin with id: 1 from the syste
 Matches:
   - Task:   DELETE /rest/Smart+Bins+API/1.0/bin/1
     Oracle: DELETE /bin/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #4 ---
@@ -22,6 +57,18 @@ Q: I am a trash man and I want to retrieve information about the trash bin with 
 Matches:
   - Task:   GET /rest/Smart+Bins+API/1.0/bin/1
     Oracle: GET /bin/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #5 ---
@@ -29,6 +76,18 @@ Q: I am a trash man and I want to update the trash bin with id: 1 to have fillLe
 Matches:
   - Task:   PUT /rest/Smart+Bins+API/1.0/bin/1
     Oracle: PUT /bin/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #6 ---
@@ -36,6 +95,18 @@ Q: I am a municipal property manager and I want to retrieve information about al
 Matches:
   - Task:   GET /rest/Smart+Buildings+API/1.0/building
     Oracle: GET /building
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #7 ---
@@ -43,6 +114,18 @@ Q: I am a municipal property manager and I want to register a new building in th
 Matches:
   - Task:   POST /rest/Smart+Buildings+API/1.0/building
     Oracle: POST /building
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #8 ---
@@ -50,6 +133,18 @@ Q: I am a municipal property manager and I want to delete the building with id: 
 Matches:
   - Task:   DELETE /rest/Smart+Buildings+API/1.0/building/1
     Oracle: DELETE /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #9 ---
@@ -57,6 +152,18 @@ Q: I am a municipal property manager and I want to retrieve information about th
 Matches:
   - Task:   GET /rest/Smart+Buildings+API/1.0/building/1
     Oracle: GET /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #10 ---
@@ -64,6 +171,18 @@ Q: I am a municipal property manager and I want to update the building with id: 
 Matches:
   - Task:   PUT /rest/Smart+Buildings+API/1.0/building/1
     Oracle: PUT /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #11 ---
@@ -71,6 +190,18 @@ Q: I am an electric vehicle owner and I want to retrieve information about all E
 Matches:
   - Task:   GET /rest/Smart+Charging+Stations+API/1.0/charging-station
     Oracle: GET /charging-station
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #12 ---
@@ -78,6 +209,18 @@ Q: I am an electric vehicle owner and I want to register a new EV charging stati
 Matches:
   - Task:   POST /rest/Smart+Charging+Stations+API/1.0/charging-station
     Oracle: POST /charging-station
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #13 ---
@@ -85,6 +228,18 @@ Q: I am an electric vehicle owner and I want to delete the EV charging station w
 Matches:
   - Task:   DELETE /rest/Smart+Charging+Stations+API/1.0/charging-station/1
     Oracle: DELETE /charging-station/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #14 ---
@@ -92,11 +247,34 @@ Q: I am an electric vehicle owner and I want to retrieve information about the E
 Matches:
   - Task:   GET /rest/Smart+Charging+Stations+API/1.0/charging-station/1
     Oracle: GET /charging-station/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #15 ---
 Q: I am an electric vehicle owner and I want to update the EV charging station with id: 1 to have available: false
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 1
+TP: 0, FP: 0, FN: 1
 Status: INCORRECT
 
 --- Question #16 ---
@@ -104,6 +282,18 @@ Q: I am a citizen and I want to reitrieve information about all citizen reports 
 Matches:
   - Task:   GET /rest/Smart+Citizens+Reports+API/1.0/citizen-report
     Oracle: GET /citizen-report
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #17 ---
@@ -111,6 +301,18 @@ Q: I am a citizen and I want to register a new citizen report in the system with
 Matches:
   - Task:   POST /rest/Smart+Citizens+Reports+API/1.0/citizen-report
     Oracle: POST /citizen-report
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #18 ---
@@ -118,6 +320,18 @@ Q: I am a citizen and I want to delete the citizen report with id: 1 from the sy
 Matches:
   - Task:   DELETE /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: DELETE /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #19 ---
@@ -125,6 +339,18 @@ Q: I am a citizen and I want to retrieve information about the citizen report wi
 Matches:
   - Task:   GET /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: GET /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #20 ---
@@ -132,6 +358,18 @@ Q: I am a citizen and I want to update the citizen report with id: 1 to have sta
 Matches:
   - Task:   PUT /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: PUT /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #21 ---
@@ -139,6 +377,18 @@ Q: I am a 911 operator and I want to retrieve information about all emergency un
 Matches:
   - Task:   GET /rest/Smart+Emergency+Services+API/1.0/emergency-unit
     Oracle: GET /emergency-unit
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #22 ---
@@ -146,6 +396,18 @@ Q: I am a 911 operator and I want to register a new emergency unit in the system
 Matches:
   - Task:   POST /rest/Smart+Emergency+Services+API/1.0/emergency-unit
     Oracle: POST /emergency-unit
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #23 ---
@@ -153,6 +415,18 @@ Q: I am a 911 operator and I want to delete the emergency unit with id: 1 from t
 Matches:
   - Task:   DELETE /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: DELETE /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #24 ---
@@ -160,6 +434,18 @@ Q: I am a 911 operator and I want to retrieve information about the emergency un
 Matches:
   - Task:   GET /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: GET /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #25 ---
@@ -167,6 +453,18 @@ Q: I am a 911 operator and I want to update the emergency unit with id: 1 to hav
 Matches:
   - Task:   PUT /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: PUT /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #26 ---
@@ -174,6 +472,18 @@ Q: I am an energy manager and I want to retrieve information about all lights re
 Matches:
   - Task:   GET /rest/Smart+Lighting+API/1.0/light
     Oracle: GET /light
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #27 ---
@@ -181,6 +491,18 @@ Q: I am an energy manager and I want to register a new light in the system with 
 Matches:
   - Task:   POST /rest/Smart+Lighting+API/1.0/light
     Oracle: POST /light
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #28 ---
@@ -188,6 +510,18 @@ Q: I am an energy manager and I want to delete the light with id: 101 from the s
 Matches:
   - Task:   DELETE /rest/Smart+Lighting+API/1.0/light/101
     Oracle: DELETE /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #29 ---
@@ -195,6 +529,18 @@ Q: I am an energy manager and I want to retrieve information about the light wit
 Matches:
   - Task:   GET /rest/Smart+Lighting+API/1.0/light/101
     Oracle: GET /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #30 ---
@@ -202,6 +548,18 @@ Q: I am an energy manager and I want to update the light with id: 101 to have br
 Matches:
   - Task:   PUT /rest/Smart+Lighting+API/1.0/light/101
     Oracle: PUT /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #31 ---
@@ -209,6 +567,18 @@ Q: I am the transport manager and I want to retrieve information about all buses
 Mismatches:
   - Task:   GET /places/default/buses
     Oracle: None
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 1.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 1, FN: 1
 Status: INCORRECT
 
 --- Question #32 ---
@@ -216,6 +586,18 @@ Q: I am the transport manager and I want to register a new bus in the system wit
 Matches:
   - Task:   POST /rest/Smart+Public+Transport+API/1.0/bus
     Oracle: POST /bus
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #33 ---
@@ -223,6 +605,18 @@ Q: I am the transport manager and I want to delete the bus with id: 1 from the s
 Matches:
   - Task:   DELETE /rest/Smart+Public+Transport+API/1.0/bus/1
     Oracle: DELETE /bus/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #34 ---
@@ -230,6 +624,18 @@ Q: I am the transport manager and I want to retrieve information about the bus w
 Matches:
   - Task:   GET /rest/Smart+Public+Transport+API/1.0/bus/1
     Oracle: GET /bus/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #35 ---
@@ -237,6 +643,18 @@ Q: I am the transport manager and I want to update the bus with id: 1 to have ac
 Matches:
   - Task:   PUT /rest/Smart+Public+Transport+API/1.0/bus/1
     Oracle: PUT /bus/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #36 ---
@@ -244,6 +662,18 @@ Q: I am an environmental monitor and I want to retrieve information about all se
 Matches:
   - Task:   GET /rest/Smart+Sensors+API/1.0/sensor
     Oracle: GET /sensor
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #37 ---
@@ -251,6 +681,18 @@ Q: I am an environmental monitor and I want to register a new sensor in the syst
 Mismatches:
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/3
     Oracle: None
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 1.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 1, FN: 1
 Status: INCORRECT
 
 --- Question #38 ---
@@ -258,6 +700,18 @@ Q: I am an environmental monitor and I want to delete the sensor with id: 1 from
 Matches:
   - Task:   DELETE /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: DELETE /sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #39 ---
@@ -265,6 +719,18 @@ Q: I am an environmental monitor and I want to retrieve information about the se
 Matches:
   - Task:   GET /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: GET /sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #40 ---
@@ -272,6 +738,18 @@ Q: I am an environmental monitor and I want to update the sensor with id: 1 to h
 Matches:
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: PUT /sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #41 ---
@@ -279,6 +757,18 @@ Q: I am a traffic controller and I want to retrieve information about all traffi
 Matches:
   - Task:   GET /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor
     Oracle: GET /traffic-sensor
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #42 ---
@@ -286,6 +776,18 @@ Q: I am a traffic controller and I want to register a new traffic-sensor in the 
 Matches:
   - Task:   POST /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor
     Oracle: POST /traffic-sensor
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #43 ---
@@ -293,6 +795,18 @@ Q: I am a traffic controller and I want to delete the traffic-sensor with id: 1 
 Matches:
   - Task:   DELETE /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor/1
     Oracle: DELETE /traffic-sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #44 ---
@@ -300,6 +814,18 @@ Q: I am a traffic controller and I want to retrieve information about the traffi
 Matches:
   - Task:   GET /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor/1
     Oracle: GET /traffic-sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #45 ---
@@ -307,11 +833,34 @@ Q: I am a traffic controller and I want to update the traffic-sensor with id: 1 
 Matches:
   - Task:   PUT /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor/1
     Oracle: PUT /traffic-sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 1, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #46 ---
 Q: I am a trash man and I want to retrieve information about all trash bins in the system AND retrieve information about the trash bin with id: 1
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #47 ---
@@ -321,11 +870,34 @@ Mismatches:
     Oracle: None
   - Task:   DELETE 
     Oracle: None
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 1.000
+Underprediction rate: 1.000
+Errors (FP+FN): 4
+TP: 0, FP: 2, FN: 2
 Status: INCORRECT
 
 --- Question #48 ---
 Q: I am a trash man and I want to update the trash bin with id: 1 to have fillLevel: 100 and status: 'overflowing' AND retrieve information about all trash bins in the system
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #49 ---
@@ -335,6 +907,18 @@ Matches:
     Oracle: GET /bin/1
   - Task:   PUT /rest/Smart+Bins+API/1.0/bin/1
     Oracle: PUT /bin/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #50 ---
@@ -345,6 +929,18 @@ Matches:
 Mismatches:
   - Task:   DELETE /rest/Smart+Bins+API/1.0/bin/{id}
     Oracle: None
+
+Metrics:
+Precision: 0.500
+Recall:    0.500
+F1-score:  0.500
+Accuracy:  0.333
+Jaccard:   0.333
+Coverage:  0.500
+Overprediction rate: 0.500
+Underprediction rate: 0.500
+Errors (FP+FN): 2
+TP: 1, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #51 ---
@@ -354,6 +950,18 @@ Matches:
     Oracle: GET /building
   - Task:   GET /rest/Smart+Buildings+API/1.0/building/1
     Oracle: GET /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #52 ---
@@ -363,6 +971,18 @@ Matches:
     Oracle: POST /building
   - Task:   DELETE /rest/Smart+Buildings+API/1.0/building/1
     Oracle: DELETE /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #53 ---
@@ -373,6 +993,18 @@ Matches:
 Mismatches:
   - Task:   GET /sites/municipal/builds
     Oracle: None
+
+Metrics:
+Precision: 0.500
+Recall:    0.500
+F1-score:  0.500
+Accuracy:  0.333
+Jaccard:   0.333
+Coverage:  0.500
+Overprediction rate: 0.500
+Underprediction rate: 0.500
+Errors (FP+FN): 2
+TP: 1, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #54 ---
@@ -382,6 +1014,18 @@ Matches:
     Oracle: GET /building/1
   - Task:   PUT /rest/Smart+Buildings+API/1.0/building/1
     Oracle: PUT /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #55 ---
@@ -391,6 +1035,18 @@ Matches:
     Oracle: DELETE /building/1
   - Task:   GET /rest/Smart+Buildings+API/1.0/building
     Oracle: GET /building
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #56 ---
@@ -400,11 +1056,34 @@ Matches:
     Oracle: GET /charging-station
   - Task:   GET /rest/Smart+Charging+Stations+API/1.0/charging-station/1
     Oracle: GET /charging-station/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #57 ---
 Q: I am an electric vehicle owner and I want to register a new EV charging station in the system with id: 3, location: '789 Battery Blvd', available: 'true', connectors: 6, chargingSpeed: 'slow', pricePerKWh: 0.2 AND delete the EV charging station with id: 1 from the system
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #58 ---
@@ -414,6 +1093,18 @@ Matches:
     Oracle: PUT /charging-station/1
   - Task:   GET /rest/Smart+Charging+Stations+API/1.0/charging-station
     Oracle: GET /charging-station
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #59 ---
@@ -423,11 +1114,34 @@ Matches:
     Oracle: GET /charging-station/1
   - Task:   PUT /rest/Smart+Charging+Stations+API/1.0/charging-station/1
     Oracle: PUT /charging-station/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #60 ---
 Q: I am an electric vehicle owner and I want to delete the EV charging station with id: 1 from the system AND retrieve information about all EV charging stations in the system
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #61 ---
@@ -437,6 +1151,18 @@ Matches:
     Oracle: GET /citizen-report
   - Task:   GET /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: GET /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #62 ---
@@ -446,6 +1172,18 @@ Matches:
     Oracle: POST /citizen-report
   - Task:   DELETE /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: DELETE /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #63 ---
@@ -455,6 +1193,18 @@ Matches:
     Oracle: PUT /citizen-report/1
   - Task:   GET /rest/Smart+Citizens+Reports+API/1.0/citizen-report
     Oracle: GET /citizen-report
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #64 ---
@@ -464,11 +1214,34 @@ Matches:
     Oracle: GET /citizen-report/1
   - Task:   PUT /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: PUT /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #65 ---
 Q: I am a citizen and I want to delete the citizen report with id: 1 from the system AND reitrieve information about all citizen reports in the system
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #66 ---
@@ -478,6 +1251,18 @@ Matches:
     Oracle: GET /emergency-unit
   - Task:   GET /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: GET /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #67 ---
@@ -487,6 +1272,18 @@ Matches:
     Oracle: POST /emergency-unit
   - Task:   DELETE /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: DELETE /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #68 ---
@@ -496,6 +1293,18 @@ Matches:
     Oracle: PUT /emergency-unit/1
   - Task:   GET /rest/Smart+Emergency+Services+API/1.0/emergency-unit
     Oracle: GET /emergency-unit
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #69 ---
@@ -505,11 +1314,34 @@ Matches:
     Oracle: GET /emergency-unit/1
   - Task:   PUT /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: PUT /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #70 ---
 Q: I am a 911 operator and I want to delete the emergency unit with id: 1 from the system AND retrieve information about all emergency units in the system
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #71 ---
@@ -519,6 +1351,18 @@ Matches:
     Oracle: GET /light
   - Task:   GET /rest/Smart+Lighting+API/1.0/light/101
     Oracle: GET /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #72 ---
@@ -528,6 +1372,18 @@ Matches:
     Oracle: POST /light
   - Task:   DELETE /rest/Smart+Lighting+API/1.0/light/101
     Oracle: DELETE /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #73 ---
@@ -537,6 +1393,18 @@ Matches:
     Oracle: PUT /light/101
   - Task:   GET /rest/Smart+Lighting+API/1.0/light
     Oracle: GET /light
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #74 ---
@@ -546,6 +1414,18 @@ Matches:
     Oracle: GET /light/101
   - Task:   PUT /rest/Smart+Lighting+API/1.0/light/101
     Oracle: PUT /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #75 ---
@@ -555,6 +1435,18 @@ Matches:
     Oracle: DELETE /light/101
   - Task:   GET /rest/Smart+Lighting+API/1.0/light
     Oracle: GET /light
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #76 ---
@@ -564,6 +1456,18 @@ Matches:
     Oracle: GET /bus
   - Task:   GET /rest/Smart+Public+Transport+API/1.0/bus/1
     Oracle: GET /bus/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #77 ---
@@ -573,6 +1477,18 @@ Matches:
     Oracle: POST /bus
   - Task:   DELETE /rest/Smart+Public+Transport+API/1.0/bus/1
     Oracle: DELETE /bus/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #78 ---
@@ -582,6 +1498,18 @@ Matches:
     Oracle: PUT /bus/1
   - Task:   GET /rest/Smart+Public+Transport+API/1.0/bus
     Oracle: GET /bus
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #79 ---
@@ -591,6 +1519,18 @@ Matches:
     Oracle: GET /bus/1
   - Task:   PUT /rest/Smart+Public+Transport+API/1.0/bus/1
     Oracle: PUT /bus/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #80 ---
@@ -600,6 +1540,18 @@ Matches:
     Oracle: DELETE /bus/1
   - Task:   GET /rest/Smart+Public+Transport+API/1.0/bus
     Oracle: GET /bus
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #81 ---
@@ -609,6 +1561,18 @@ Matches:
     Oracle: GET /sensor
   - Task:   GET /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: GET /sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #82 ---
@@ -619,6 +1583,18 @@ Matches:
 Mismatches:
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/3
     Oracle: None
+
+Metrics:
+Precision: 0.500
+Recall:    0.500
+F1-score:  0.500
+Accuracy:  0.333
+Jaccard:   0.333
+Coverage:  0.500
+Overprediction rate: 0.500
+Underprediction rate: 0.500
+Errors (FP+FN): 2
+TP: 1, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #83 ---
@@ -628,6 +1604,18 @@ Matches:
     Oracle: PUT /sensor/1
   - Task:   GET /rest/Smart+Sensors+API/1.0/sensor
     Oracle: GET /sensor
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #84 ---
@@ -637,6 +1625,18 @@ Matches:
     Oracle: GET /sensor/1
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: PUT /sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #85 ---
@@ -646,6 +1646,18 @@ Matches:
     Oracle: DELETE /sensor/1
   - Task:   GET /rest/Smart+Sensors+API/1.0/sensor
     Oracle: GET /sensor
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #86 ---
@@ -655,6 +1667,18 @@ Matches:
     Oracle: GET /traffic-sensor
   - Task:   GET /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor/1
     Oracle: GET /traffic-sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #87 ---
@@ -664,6 +1688,18 @@ Matches:
     Oracle: POST /traffic-sensor
   - Task:   DELETE /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor/1
     Oracle: DELETE /traffic-sensor/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #88 ---
@@ -674,11 +1710,34 @@ Matches:
 Mismatches:
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: None
+
+Metrics:
+Precision: 0.500
+Recall:    0.500
+F1-score:  0.500
+Accuracy:  0.333
+Jaccard:   0.333
+Coverage:  0.500
+Overprediction rate: 0.500
+Underprediction rate: 0.500
+Errors (FP+FN): 2
+TP: 1, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #89 ---
 Q: I am a traffic controller and I want to retrieve information about the traffic-sensor with id: 1 AND update the traffic-sensor with id: 1 to have active: 'false'
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 2
+TP: 0, FP: 0, FN: 2
 Status: INCORRECT
 
 --- Question #90 ---
@@ -688,11 +1747,34 @@ Matches:
     Oracle: DELETE /traffic-sensor/1
   - Task:   GET /rest/Smart+Traffic+Monitoring+API/1.0/traffic-sensor
     Oracle: GET /traffic-sensor
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 2, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #91 ---
 Q: I am a trash man and I want to retrieve information about all trash bins in the system AND register a new trash bin in the system with id: 3, location: 'City Square', fillLevel: 10, lastEmptied: '2025-09-25T06:30:00Z', binType: 'organic', status: 'normal' AND delete the trash bin with id: 1 from the system
-Oracle has more steps than tasks
+
+Metrics:
+Precision: 0.000
+Recall:    0.000
+F1-score:  0.000
+Accuracy:  0.000
+Jaccard:   0.000
+Coverage:  0.000
+Overprediction rate: 0.000
+Underprediction rate: 1.000
+Errors (FP+FN): 3
+TP: 0, FP: 0, FN: 3
 Status: INCORRECT
 
 --- Question #92 ---
@@ -704,6 +1786,18 @@ Matches:
     Oracle: POST /building
   - Task:   DELETE /rest/Smart+Buildings+API/1.0/building/1
     Oracle: DELETE /building/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 3, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #93 ---
@@ -716,6 +1810,18 @@ Matches:
 Mismatches:
   - Task:   POST /v1/chargestations
     Oracle: None
+
+Metrics:
+Precision: 0.667
+Recall:    0.667
+F1-score:  0.667
+Accuracy:  0.500
+Jaccard:   0.500
+Coverage:  0.667
+Overprediction rate: 0.333
+Underprediction rate: 0.333
+Errors (FP+FN): 2
+TP: 2, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #94 ---
@@ -727,6 +1833,18 @@ Matches:
     Oracle: POST /citizen-report
   - Task:   PUT /rest/Smart+Citizens+Reports+API/1.0/citizen-report/1
     Oracle: PUT /citizen-report/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 3, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #95 ---
@@ -738,6 +1856,18 @@ Matches:
     Oracle: POST /emergency-unit
   - Task:   PUT /rest/Smart+Emergency+Services+API/1.0/emergency-unit/1
     Oracle: PUT /emergency-unit/1
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 3, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #96 ---
@@ -749,6 +1879,18 @@ Matches:
     Oracle: POST /light
   - Task:   DELETE /rest/Smart+Lighting+API/1.0/light/101
     Oracle: DELETE /light/101
+
+Metrics:
+Precision: 1.000
+Recall:    1.000
+F1-score:  1.000
+Accuracy:  1.000
+Jaccard:   1.000
+Coverage:  1.000
+Overprediction rate: 0.000
+Underprediction rate: 0.000
+Errors (FP+FN): 0
+TP: 3, FP: 0, FN: 0
 Status: CORRECT
 
 --- Question #97 ---
@@ -761,6 +1903,18 @@ Matches:
 Mismatches:
   - Task:   PUT /rest/Smart+Public+Transport+API/1.0/bus/3
     Oracle: None
+
+Metrics:
+Precision: 0.667
+Recall:    0.667
+F1-score:  0.667
+Accuracy:  0.500
+Jaccard:   0.500
+Coverage:  0.667
+Overprediction rate: 0.333
+Underprediction rate: 0.333
+Errors (FP+FN): 2
+TP: 2, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #98 ---
@@ -773,6 +1927,18 @@ Matches:
 Mismatches:
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/3
     Oracle: None
+
+Metrics:
+Precision: 0.667
+Recall:    0.667
+F1-score:  0.667
+Accuracy:  0.500
+Jaccard:   0.500
+Coverage:  0.667
+Overprediction rate: 0.333
+Underprediction rate: 0.333
+Errors (FP+FN): 2
+TP: 2, FP: 1, FN: 1
 Status: PARTIAL
 
 --- Question #99 ---
@@ -785,5 +1951,17 @@ Matches:
 Mismatches:
   - Task:   PUT /rest/Smart+Sensors+API/1.0/sensor/1
     Oracle: None
+
+Metrics:
+Precision: 0.667
+Recall:    0.667
+F1-score:  0.667
+Accuracy:  0.500
+Jaccard:   0.500
+Coverage:  0.667
+Overprediction rate: 0.333
+Underprediction rate: 0.333
+Errors (FP+FN): 2
+TP: 2, FP: 1, FN: 1
 Status: PARTIAL
 
